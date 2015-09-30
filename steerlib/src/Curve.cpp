@@ -40,6 +40,7 @@ void Curve::addControlPoints(const std::vector<CurvePoint>& inputPoints)
 	sortControlPoints();
 }
 
+// @Neil Murray
 // Draw the curve shape on screen, usign window as step size (bigger window: less accurate shape)
 void Curve::drawCurve(Color curveColor, float curveThickness, int window)
 {
@@ -53,6 +54,8 @@ void Curve::drawCurve(Color curveColor, float curveThickness, int window)
 		flag = true;
 	}
 	//=========================================================================
+
+
 
 	// Robustness: make sure there is at least two control point: start and end points
 
@@ -105,18 +108,26 @@ bool Curve::calculatePoint(Point& outputPoint, float time)
 	// Return
 	return true;
 }
-
+// @Neil Murray
 // Check Roboustness
 bool Curve::checkRobust()
 {
-	//================DELETE THIS PART AND THEN START CODING===================
+	std::vector<CurvePoint> rob_curves = getControPoints();
+	if (rob_curves.size() < 2) {
+		return false;
+	}
+	else {
+		return true;
+	}
+	
+	/*
 	static bool flag = false;
 	if (!flag)
 	{
 		std::cerr << "ERROR>>>>Member function checkRobust is not implemented!" << std::endl;
 		flag = true;
 	}
-	//=========================================================================
+	*///=========================================================================
 
 
 	return true;

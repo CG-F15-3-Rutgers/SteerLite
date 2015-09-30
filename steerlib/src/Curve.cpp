@@ -45,14 +45,38 @@ void Curve::drawCurve(Color curveColor, float curveThickness, int window)
 {
 #ifdef ENABLE_GUI
 
-	//================DELETE THIS PART AND THEN START CODING===================
-	static bool flag = false;
-	if (!flag)
-	{
-		std::cerr << "ERROR>>>>Member function drawCurve is not implemented!" << std::endl;
-		flag = true;
+	if(checkRobust()==false){
+		std::cerr << "Error, checkRobust failed in drawCurve!";
 	}
-	//=========================================================================
+	
+	float timeInterval, startT, endT, dT, time;
+	Point endPoint;
+	Point startPoint;
+	int curr;
+	
+	for(int i = 1; i<controlPoints.size(); i++){	//for each control point in controlPoints
+		
+	
+		startPoint = controlPoints[i-1].position;	//get the start point, start time, and end time
+		startT = controlPoints[i-1].time;
+		endT = controlPoints[i].time;
+		timeInterval = endT-startT;					//calculate the delta which is just the interval/window
+		dT = timeInterval/(float)window;
+		curr = i;
+		
+		for(time =startT; time <= endT; time=time+dT){ //go through the time adding the delta time constant to draw either the hermite or the catmull curve
+			
+			if(type==hermiteCurve){
+				endPoint = useHermiteCurve(curr,time);
+			}else{
+				endPoint = useCatmullCurve(curr,time);
+			}
+			
+			DrawLib::drawLine(startPoint,endPoint,curveColor,curveThickness); //draw function
+		}
+
+
+	}
 
 	// Robustness: make sure there is at least two control point: start and end points
 
@@ -144,34 +168,34 @@ bool Curve::calculatePoint(Point& outputPoint, float time)
 
 // Check Roboustness
 bool Curve::checkRobust()
-{
-	//================DELETE THIS PART AND THEN START CODING===================
-	static bool flag = false;
-	if (!flag)
-	{
-		std::cerr << "ERROR>>>>Member function checkRobust is not implemented!" << std::endl;
-		flag = true;
+{	
+	std::vector<CurvePoint> rob_curves = getControPoints(); // vector
+	
+	if (rob_curves.size() < 2) {	//if there are not two points... bad!
+		return false;
 	}
-	//=========================================================================
-
-
-	return true;
+	else {
+		return true;				//if there are... good!
+	}
+	return true;					//shouldn't happen
 }
 
 // Find the current time interval (i.e. index of the next control point to follow according to current time)
 bool Curve::findTimeInterval(unsigned int& nextPoint, float time)
 {
-	//================DELETE THIS PART AND THEN START CODING===================
-	static bool flag = false;
-	if (!flag)
-	{
-		std::cerr << "ERROR>>>>Member function findTimeInterval is not implemented!" << std::endl;
-		flag = true;
+
+	std::vector<CurvePoint> cPoints = getControPoints();	//vector
+	std::vector<CurvePoint>::iterator iter;					//vector iterator
+	iter = cPoints.begin();
+	for(int a=0;a<cPoints.size();a++){
+		
+		if(time<cPoints[a].time){		//if time is less than the a'th spot in cPoints, set the distance, and return true
+			nextPoint = std::distance(cPoints.begin(),iter);
+			return true;
+			}
+		iter++;
 	}
-	//=========================================================================
-
-
-	return true;
+	return false;		//if the time is outside of the time interval we return false
 }
 
 // Implement Hermite curve
@@ -180,16 +204,43 @@ Point Curve::useHermiteCurve(const unsigned int nextPoint, const float time)
 	Point newPosition;
 	float normalTime, intervalTime;
 
-	//================DELETE THIS PART AND THEN START CODING===================
-	static bool flag = false;
-	if (!flag)
-	{
-		std::cerr << "ERROR>>>>Member function useHermiteCurve is not implemented!" << std::endl;
-		flag = true;
-	}
-	//=========================================================================
-
-
+	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
+	Point nextP = curveP[nextPoint].position;
+	Point prevP = curveP[nextPoint-1].position;				//get the nextPoint and currentPoint's time and positions
+	float nextTime = curveP[nextPoint].time;
+	float prevTime = curveP[nextPoint-1].time;
+	
+	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
+	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//==========================================================================================
+	//			WE
+	//					STILL
+	//								NEED
+	//											TO
+	//													IMPLEMENT
+	//																	THIS
+	//																			STUFF
+	//===========================================================================================
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// Calculate time interval, and normal time required for later curve calculations
 
 	// Calculate position at t = time on Hermite curve
@@ -202,16 +253,31 @@ Point Curve::useHermiteCurve(const unsigned int nextPoint, const float time)
 Point Curve::useCatmullCurve(const unsigned int nextPoint, const float time)
 {
 	Point newPosition;
+	float normalTime, intervalTime;
 
-	//================DELETE THIS PART AND THEN START CODING===================
-	static bool flag = false;
-	if (!flag)
-	{
-		std::cerr << "ERROR>>>>Member function useCatmullCurve is not implemented!" << std::endl;
-		flag = true;
-	}
-	//=========================================================================
-
+	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
+	Point nextP = curveP[nextPoint].position;
+	Point prevP = curveP[nextPoint-1].position;				//get the nextPoint and currentPoint's time and positions
+	float nextTime = curveP[nextPoint].time;
+	float prevTime = curveP[nextPoint-1].time;
+	
+	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
+	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
+		
+	
+	
+	//==========================================================================================
+	//			WE
+	//					STILL
+	//								NEED
+	//											TO
+	//													IMPLEMENT
+	//																	THIS
+	//																			STUFF
+	//===========================================================================================
+	
+	
+	
 
 	// Calculate time interval, and normal time required for later curve calculations
 

@@ -65,17 +65,53 @@ void Curve::drawCurve(Color curveColor, float curveThickness, int window)
 // Sort controlPoints vector in ascending order: min-first
 void Curve::sortControlPoints()
 {
-	//================DELETE THIS PART AND THEN START CODING===================
-	static bool flag = false;
-	if (!flag)
-	{
-		std::cerr << "ERROR>>>>Member function sortControlPoints is not implemented!" << std::endl;
-		flag = true;
+	std::cout<<"THIS METHOD HAS BEEN CALLED" << "\n";
+	
+	std::vector<CurvePoint> cPoints = getControPoints(); //vector to hold control points
+	std::vector<CurvePoint> sortedControlPoints = getControPoints(); //vector to hold the sorted points
+	
+	int numP = controlPoints.size(); //number of control points
+	int pos = 0; //position in vector of lowest point
+	int count = cPoints.size(); //size of Cpoints
+	
+	
+	for (int j = 0; j<count;j++){ //print all of the unsorted points
+		std::cout<<"Control Point at " << j << " is: " << "Time: " << cPoints[j].time << " Position: " << cPoints[j].position <<"\n";
 	}
-	//=========================================================================
-
+	std::cout<<"\n";
+	
+	while(count>0){ //run until we have erased all of the points
+		Util::CurvePoint lowestPoint = cPoints[0]; //set the first point to the lowest
+		
+		//std::cout<<"breakpoint1";
+		for(int i = 0; i<count;i++){ //go through the entire array and save the lowest time
+			//std::cout<<"breakpoint2";
+			if(cPoints[i].time<lowestPoint.time){//new lowest point
+				pos = i;
+				lowestPoint=cPoints[i];
+				//std::cout<<"The lowest point is: " << lowestPoint.time << " , " << lowestPoint.position;
+			}else{
+				//not lowest
+			}
+		}
+		sortedControlPoints[numP - count]=lowestPoint; //populate sortedControlPoints with the lowest time
+		//std::cout<<"breakpoint2.5";
+		//std::cout<<"pos is: " << pos;
+		cPoints.erase(cPoints.begin()+pos);	//erase 1 entry from cPoints
+		pos=0;
+		//std::cout<<"count is: "<<count;
+		//std::cout<<"breakpoint3";
+		count--;
+	}
+	//std::cout<<"breakpoint4"<<"\n";
+	
+	for (int k = 0; k<sortedControlPoints.size();k++){ //print all of the sorted points
+		std::cout<<"Sorted Control Point at : " << k << " is: "<< "Time: " << sortedControlPoints[k].time << " Position: " << sortedControlPoints[k].position <<"\n";
+	}
+	
 	return;
 }
+
 
 // Calculate the position on curve corresponding to the given time, outputPoint is the resulting position
 bool Curve::calculatePoint(Point& outputPoint, float time)

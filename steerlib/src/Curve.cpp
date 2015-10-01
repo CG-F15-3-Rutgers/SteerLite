@@ -207,39 +207,44 @@ Point Curve::useHermiteCurve(const unsigned int nextPoint, const float time)
 	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
 	Point nextP = curveP[nextPoint].position;
 	Point prevP = curveP[nextPoint-1].position;				//get the nextPoint and currentPoint's time and positions
+	
 	float nextTime = curveP[nextPoint].time;
 	float prevTime = curveP[nextPoint-1].time;
 	
 	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
 	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
 	
+	float t = normalTime;
+	float t2 = normalTime*normalTime;
+	float t3 = normalTime*normalTime*normalTime;
 	
+	float x0,x1,x2,x3;
+	float y0,y1,y2,y3;
+	float z0,z1,z2,z3;
+ 	float x, y, z;
 	
+ 	x0 = ((2*t3)-(3*t2)+1)*prevP.x;		//hermite math for x
+	x1 = ((-2*t3)+(3*t2))*curveP[nextPoint-1].tangent.x;
+	x2 = (t3 - (2*t2)+t)*nextP.x;
+	x3 = (t3 - t2)*curveP[nextPoint].tangent.x;
 	
+	x = x0 + x1 + x2 + x3;
 	
+	y0 = ((2*t3)-(3*t2)+1)*prevP.y;		//hermite math for y
+	y1 = ((-2*t3)+(3*t2))*curveP[nextPoint-1].tangent.y;
+	y2 = (t3 - (2*t2)+t)*nextP.y;
+	y3 = (t3 - t2)*curveP[nextPoint].tangent.y;
 	
+	y = y0 + y1 + y2 + y3;
+		
+	z0 = ((2*t3)-(3*t2)+1)*prevP.z;		//hermite math for z
+	z1 = ((-2*t3)+(3*t2))*curveP[nextPoint-1].tangent.z;
+	z2 = (t3 - (2*t2)+t)*nextP.z;
+	z3 = (t3 - t2)*curveP[nextPoint].tangent.z;
 	
-	
-	
-	
-	//==========================================================================================
-	//			WE
-	//					STILL
-	//								NEED
-	//											TO
-	//													IMPLEMENT
-	//																	THIS
-	//																			STUFF
-	//===========================================================================================
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	z = z0 + z1 + z2 + z3;
+ 
+ 	newPosition = Point(x,y,z);
 	
 	// Calculate time interval, and normal time required for later curve calculations
 
@@ -263,6 +268,11 @@ Point Curve::useCatmullCurve(const unsigned int nextPoint, const float time)
 	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
 	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
 	
+	if(nextPoint==0){
+		newPosition = controlPoints[nextPoint].position;
+		return newPosition;
+	}
+	
 	if(nextPoint<=1){
 		newPosition = useHermiteCurve(nextPoint,time);
 		return newPosition;
@@ -281,16 +291,11 @@ Point Curve::useCatmullCurve(const unsigned int nextPoint, const float time)
 	float t2 = normalTime*normalTime;
 	float t3 = normalTime*normalTime*normalTime;
 	
-	/*newPosition.position.x = ((-t3 + 2*t2-t)*(point0.position.x) + (3*t3-5*t2+2)*(point1.position.x) + (-3*t3+4*t2+t)* (point2.position.x) + (t3-t2)*(point4.position.x))/2;
-	newPosition.position.y = ((-t3 + 2*t2-t)*(point0.position.y) + (3*t3-5*t2+2)*(point1.position.y) + (-3*t3+4*t2+t)* (point2.position.y) + (t3-t2)*(point4.position.y))/2;
-	newPosition.position.z = ((-t3 + 2*t2-t)*(point0.position.z) + (3*t3-5*t2+2)*(point1.position.z) + (-3*t3+4*t2+t)* (point2.position.z) + (t3-t2)*(point4.position.z))/2;
-	*/
 	
-	newPosition.x = ((2 * point1.x) + (-point0.x + point2.x) * t + (2*point0.x - 5*point1.x + 4*point2.x - point3.x) * t2 + (-point0.x + 3*point1.x - 3*point2.x + point3.x) * t3) * 0.5f;
+	newPosition.x = ((2 * point1.x) + (-point0.x + point2.x) * t + (2*point0.x - 5*point1.x + 4*point2.x - point3.x) * t2 + (-point0.x + 3*point1.x - 3*point2.x + point3.x) * t3) * 0.5f;	//catmull-rom math
 	newPosition.y = ((2 * point1.y) + (-point0.y + point2.y) * t + (2*point0.y - 5*point1.y + 4*point2.y - point3.y) * t2 + (-point0.y + 3*point1.y - 3*point2.y + point3.y) * t3) * 0.5f;
 	newPosition.z = ((2 * point1.z) + (-point0.z + point2.z) * t + (2*point0.z - 5*point1.z + 4*point2.z - point3.z) * t2 + (-point0.z + 3*point1.z - 3*point2.z + point3.z) * t3) * 0.5f;
 	
-	return newPosition;
 	
 	// Calculate time interval, and normal time required for later curve calculations
 

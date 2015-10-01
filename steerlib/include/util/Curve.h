@@ -27,8 +27,8 @@
 
 namespace Util {
 
-	static const int hermiteCurve = 1;
-	static const int catmullCurve = 0;
+	static const int hermiteCurve = 0;
+	static const int catmullCurve = 1;
 
 	/* Class containing the data structure that a Curve uses. */
 

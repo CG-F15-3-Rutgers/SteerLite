@@ -1,49 +1,6 @@
-<<<<<<< HEAD
-﻿Build started 10/1/2015 4:23:34 PM.
+﻿Build started 10/1/2015 4:53:36 PM.
      1>Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\steersim\build\win32\steersim.vcxproj" on node 2 (Build target(s)).
      1>Link:
-=======
-﻿Build started 9/30/2015 10:24:29 PM.
-     1>Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\steersim\build\win32\steersim.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\ccAI\include /I..\..\..\footstepAI\include /I..\..\..\rvo2AI\include /I..\..\..\util\include /I..\..\..\pprAI\include /I..\..\include /I..\..\..\steerlib\include /I..\..\..\external /I..\..\..\external\qhull\src /IC:\Qt\4.5.2\include /Zi /nologo /W3 /WX- /MP /O2 /Oi /Ot /GL /D ENABLE_GUI /D ENABLE_GLFW /D _MBCS /Gm- /EHsc /MD /GS /Gy /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /errorReport:prompt ..\..\src\CommandLineEngineDriver.cpp ..\..\src\GLFWEngineDriver.cpp ..\..\src\Main.cpp
-     1>cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
-     1>cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
-         CommandLineEngineDriver.cpp
-     1>cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
-         GLFWEngineDriver.cpp
-     1>cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
-         Main.cpp
-     1>c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(33): warning C4005: 'ENABLE_GLFW': macro redefinition (compiling source file ..\..\src\Main.cpp)
-         c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(33): note: command-line arguments:  see previous definition of 'ENABLE_GLFW' (compiling source file ..\..\src\Main.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(33): warning C4005: 'ENABLE_GLFW': macro redefinition (compiling source file ..\..\src\GLFWEngineDriver.cpp)
-         c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(33): note: command-line arguments:  see previous definition of 'ENABLE_GLFW' (compiling source file ..\..\src\GLFWEngineDriver.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(33): warning C4005: 'ENABLE_GLFW': macro redefinition (compiling source file ..\..\src\CommandLineEngineDriver.cpp)
-         c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(33): note: command-line arguments:  see previous definition of 'ENABLE_GLFW' (compiling source file ..\..\src\CommandLineEngineDriver.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\util\include\UtilGlobals.h(17): warning C4005: 'UTIL_API': macro redefinition (compiling source file ..\..\src\GLFWEngineDriver.cpp)
-         c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(22): note: see previous definition of 'UTIL_API' (compiling source file ..\..\src\GLFWEngineDriver.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\util\include\UtilGlobals.h(17): warning C4005: 'UTIL_API': macro redefinition (compiling source file ..\..\src\Main.cpp)
-         c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(22): note: see previous definition of 'UTIL_API' (compiling source file ..\..\src\Main.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\util\include\LogObject.h(85): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data (compiling source file ..\..\src\GLFWEngineDriver.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\util\include\UtilGlobals.h(17): warning C4005: 'UTIL_API': macro redefinition (compiling source file ..\..\src\CommandLineEngineDriver.cpp)
-         c:\users\benb0_000\documents\github\steerlite\steerlib\include\Globals.h(22): note: see previous definition of 'UTIL_API' (compiling source file ..\..\src\CommandLineEngineDriver.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\util\include\LogObject.h(85): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data (compiling source file ..\..\src\Main.cpp)
-     1>c:\users\benb0_000\documents\github\steerlite\util\include\LogObject.h(85): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data (compiling source file ..\..\src\CommandLineEngineDriver.cpp)
-     1>..\..\src\GLFWEngineDriver.cpp(142): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h(346): note: see declaration of 'strncpy'
-     1>..\..\src\GLFWEngineDriver.cpp(322): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-     1>..\..\src\GLFWEngineDriver.cpp(346): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-     1>..\..\src\GLFWEngineDriver.cpp(347): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-     1>..\..\src\GLFWEngineDriver.cpp(366): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>..\..\src\GLFWEngineDriver.cpp(367): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-     1>..\..\src\CommandLineEngineDriver.cpp(119): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h(346): note: see declaration of 'strncpy'
-     1>..\..\src\CommandLineEngineDriver.cpp(125): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h(346): note: see declaration of 'strncpy'
-     1>..\..\src\Main.cpp(229): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-         C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h(346): note: see declaration of 'strncpy'
-       Link:
->>>>>>> parent of b9e553d... added hermite curve
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\steersim.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\ util.lib opengl32.lib glu32.lib C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\\Release\glfw.lib steerlib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\steersim.pdb" /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\steersim.lib" /MACHINE:X64 Release\CommandLineEngineDriver.obj
          Release\GLFWEngineDriver.obj
          Release\Main.obj
@@ -89,8 +46,4 @@
 
 Build succeeded.
 
-<<<<<<< HEAD
-Time Elapsed 00:00:01.17
-=======
-Time Elapsed 00:00:07.02
->>>>>>> parent of b9e553d... added hermite curve
+Time Elapsed 00:00:01.23

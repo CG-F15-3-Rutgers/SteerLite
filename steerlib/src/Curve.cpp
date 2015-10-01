@@ -159,6 +159,7 @@ bool Curve::findTimeInterval(unsigned int& nextPoint, float time)
 	return false;
 }
 
+<<<<<<< HEAD
 float h1 (float t) {
  	return (2 * t * t * t - 3 * t * t + 1);
  }
@@ -179,6 +180,54 @@ float dist (Point p0, Point p1){
 	float diffx = pow((p0.x - p1.x), 2);
 	float diffy = pow((p0.y - p1.y), 2);
 	float diffz = pow((p0.z - p1.z), 2);
+=======
+// Implement Hermite curve
+Point Curve::useHermiteCurve(const unsigned int nextPoint, const float time)
+{
+	Point newPosition;
+	float normalTime, intervalTime;
+
+	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
+	Point nextP = curveP[nextPoint].position;
+	Point prevP = curveP[nextPoint-1].position;				//get the nextPoint and currentPoint's time and positions
+	float nextTime = curveP[nextPoint].time;
+	float prevTime = curveP[nextPoint-1].time;
+	
+	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
+	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//==========================================================================================
+	//			WE
+	//					STILL
+	//								NEED
+	//											TO
+	//													IMPLEMENT
+	//																	THIS
+	//																			STUFF
+	//===========================================================================================
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Calculate time interval, and normal time required for later curve calculations
+
+	// Calculate position at t = time on Hermite curve
+>>>>>>> parent of b9e553d... added hermite curve
 
 	return sqrt(diffx + diffy + diffz);
 }
@@ -231,11 +280,6 @@ Point Curve::useCatmullCurve(const unsigned int nextPoint, const float time)
 	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
 	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
 	
-	if(nextPoint==0){
-		newPosition = controlPoints[nextPoint].position;
-		return newPosition;
-	}
-	
 	if(nextPoint<=1){
 		newPosition = useHermiteCurve(nextPoint,time);
 		return newPosition;
@@ -254,11 +298,16 @@ Point Curve::useCatmullCurve(const unsigned int nextPoint, const float time)
 	float t2 = normalTime*normalTime;
 	float t3 = normalTime*normalTime*normalTime;
 	
+	/*newPosition.position.x = ((-t3 + 2*t2-t)*(point0.position.x) + (3*t3-5*t2+2)*(point1.position.x) + (-3*t3+4*t2+t)* (point2.position.x) + (t3-t2)*(point4.position.x))/2;
+	newPosition.position.y = ((-t3 + 2*t2-t)*(point0.position.y) + (3*t3-5*t2+2)*(point1.position.y) + (-3*t3+4*t2+t)* (point2.position.y) + (t3-t2)*(point4.position.y))/2;
+	newPosition.position.z = ((-t3 + 2*t2-t)*(point0.position.z) + (3*t3-5*t2+2)*(point1.position.z) + (-3*t3+4*t2+t)* (point2.position.z) + (t3-t2)*(point4.position.z))/2;
+	*/
 	
-	newPosition.x = ((2 * point1.x) + (-point0.x + point2.x) * t + (2*point0.x - 5*point1.x + 4*point2.x - point3.x) * t2 + (-point0.x + 3*point1.x - 3*point2.x + point3.x) * t3) * 0.5f;	//catmull-rom math
+	newPosition.x = ((2 * point1.x) + (-point0.x + point2.x) * t + (2*point0.x - 5*point1.x + 4*point2.x - point3.x) * t2 + (-point0.x + 3*point1.x - 3*point2.x + point3.x) * t3) * 0.5f;
 	newPosition.y = ((2 * point1.y) + (-point0.y + point2.y) * t + (2*point0.y - 5*point1.y + 4*point2.y - point3.y) * t2 + (-point0.y + 3*point1.y - 3*point2.y + point3.y) * t3) * 0.5f;
 	newPosition.z = ((2 * point1.z) + (-point0.z + point2.z) * t + (2*point0.z - 5*point1.z + 4*point2.z - point3.z) * t2 + (-point0.z + 3*point1.z - 3*point2.z + point3.z) * t3) * 0.5f;
 	
+	return newPosition;
 	
 	// Calculate time interval, and normal time required for later curve calculations
 

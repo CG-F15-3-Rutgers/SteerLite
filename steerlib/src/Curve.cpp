@@ -77,26 +77,24 @@
  
  
  	}*/
-	
-	float time = 0;
- 	float end = controlPoints[controlPoints.size() - 1].time;
- 	Point startPoint = controlPoints[0].position;
+	Point startPoint = controlPoints[0].position;
  	Point endPoint;
 	
-	float timeWindow = 0.5;
- 	while (time <= end) {
- 		if (calculatePoint(endPoint, time)) { 
+	float time = 0;
+ 	float endTime = controlPoints[controlPoints.size() - 1].time;
+ 	float startTime = controlPoints[0].time;
+	
+	float timeWin = 0.5;
+ 	while (time <= endTime) {			//while time is less than or equal to the endtime
+ 		if (calculatePoint(endPoint, time)) { //if calculate point spits back true we can keep drawing the line
  			DrawLib::drawLine(startPoint, endPoint, curveColor, curveThickness);
  			startPoint = endPoint;
- 		} else {
+ 		} else {			//if it spits out false we have problems -.-
  			std::cerr<<"Failed to find next Point at time " << time << std::endl;
  		}
- 		time += timeWindow;
+ 		time = time + timeWin; //go to next time window
 	}
 	
-	
-	
- 
  	// Robustness: make sure there is at least two control point: start and end points
  
  	// Move on the curve from t=0 to t=finalPoint, using window as step size, and linearly interpolate the curve points
@@ -168,9 +166,11 @@
  	float normalTime, intervalTime;
  
  	// Find the current interval in time, supposing that controlPoints is sorted (sorting is done whenever control points are added)
- 	if (!findTimeInterval(nextPoint, time))
+ 	if (!findTimeInterval(nextPoint, time)){
+		
+		std::cout<<"failed in time interval"<<"\n";
  		return false;
- 
+	}
  	// Calculate position at t = time on curve
  	/*if (type == hermiteCurve)
  	{
@@ -217,6 +217,7 @@
  			}
  		iter++;
  	}
+	std::cout<<"error in findTimeInterval"<<"\n"<<"\n";
  	return false;		//if the time is outside of the time interval we return false
  }
  
@@ -283,10 +284,10 @@
  	Point newPosition;
  	float normalTime, intervalTime;
  
- 	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
- 	int size = curveP.size();
- 	float nextTime = curveP[nextPoint].time;
- 	float prevTime = curveP[nextPoint-1].time;
+ 	
+ 	int size = controlPoints.size();
+ 	float nextTime = controlPoints[nextPoint].time;
+ 	float prevTime = controlPoints[nextPoint-1].time;
  	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
  	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
  	
@@ -304,10 +305,10 @@
  		return newPosition;
  	}
  	
- 	Point point3 = curveP[nextPoint+1].position;
- 	Point point2 = curveP[nextPoint].position;
- 	Point point1 = curveP[nextPoint-1].position;
- 	Point point0 = curveP[nextPoint-2].position;//get the nextPoint and currentPoint's time and positions
+ 	Point point3 = controlPoints[nextPoint+1].position;
+ 	Point point2 = controlPoints[nextPoint].position;
+ 	Point point1 = controlPoints[nextPoint-1].position;
+ 	Point point0 = controlPoints[nextPoint-2].position;//get the nextPoint and currentPoint's time and positions
  	
  	float t = normalTime;
  	float t2 = normalTime*normalTime;

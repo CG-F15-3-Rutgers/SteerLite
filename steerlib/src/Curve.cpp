@@ -46,7 +46,7 @@
  #ifdef ENABLE_GUI
  
  	if(checkRobust()==false){
- 		std::cerr << "Error, checkRobust failed in drawCurve!";
+ 		//std::cerr << "Error, checkRobust failed in drawCurve!";
  	}
  	
  	/*float timeInterval, startT, endT, dT, time;
@@ -90,7 +90,7 @@
  			DrawLib::drawLine(startPoint, endPoint, curveColor, curveThickness);
  			startPoint = endPoint;
  		} else {			//if it spits out false we have problems -.-
- 			std::cerr<<"Failed to find next Point at time " << time << std::endl;
+ 			//std::cerr<<"Failed to find next Point at time " << time << std::endl;
  		}
  		time = time + timeWin; //go to next time window
 	}
@@ -167,8 +167,8 @@
  
  	// Find the current interval in time, supposing that controlPoints is sorted (sorting is done whenever control points are added)
  	if (!findTimeInterval(nextPoint, time)){
-		
-		std::cout<<"failed in time interval"<<"\n";
+			
+		//std::cout<<"failed in time interval"<<"\n";
  		return false;
 	}
  	// Calculate position at t = time on curve
@@ -182,8 +182,8 @@
  	}
 	*/
  	// Return
-	//outputPoint = useHermiteCurve(nextPoint, time);
-	outputPoint = useCatmullCurve(nextPoint, time);
+	outputPoint = useHermiteCurve(nextPoint, time);
+	//outputPoint = useCatmullCurve(nextPoint, time);
  
  	return true;
  }
@@ -206,7 +206,7 @@
  bool Curve::findTimeInterval(unsigned int& nextPoint, float time)
  {
  
- 	std::vector<CurvePoint> cPoints = getControPoints();	//vector
+	std::vector<CurvePoint> cPoints = getControPoints();	//vector
  	std::vector<CurvePoint>::iterator iter;					//vector iterator
  	iter = cPoints.begin();
  	for(int a=0;a<cPoints.size();a++){
@@ -217,65 +217,67 @@
  			}
  		iter++;
  	}
-	std::cout<<"error in findTimeInterval"<<"\n"<<"\n";
+	//std::cout<<"error in findTimeInterval"<<"\n"<<"\n";
  	return false;		//if the time is outside of the time interval we return false
+	
  }
  
  // Implement Hermite curve
  Point Curve::useHermiteCurve(const unsigned int nextPoint, const float time)
  {
- 	Point newPosition;
- 	float normalTime, intervalTime;
- 
- 	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
- 	Point nextP = curveP[nextPoint].position;
- 	Point prevP = curveP[nextPoint-1].position;				//get the nextPoint and currentPoint's time and positions
+ 	
+	Point newPosition;
+	float normalTime, intervalTime;
+
+	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
+	Point nextP = curveP[nextPoint].position;
+	Point prevP = curveP[nextPoint-1].position;				//get the nextPoint and currentPoint's time and positions
 	
- 	float nextTime = curveP[nextPoint].time;
- 	float prevTime = curveP[nextPoint-1].time;
- 	
- 	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
- 	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
- 	
+	float nextTime = curveP[nextPoint].time;
+	float prevTime = curveP[nextPoint-1].time;
+	
+	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
+	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
+	
 	float t = normalTime;
 	float t2 = normalTime*normalTime;
 	float t3 = normalTime*normalTime*normalTime;
- 	
+	
 	float x0,x1,x2,x3;
 	float y0,y1,y2,y3;
 	float z0,z1,z2,z3;
  	float x, y, z;
- 	
- 	x0 = ((2*t3)-(3*t2)+1)*prevP.x;		//hermite math for x
-	x1 = ((-2*t3)+(3*t2))*curveP[nextPoint-1].tangent.x;
-	x2 = (t3 - (2*t2)+t)*nextP.x;
+		
+ 	x0 = (2*t3 - 3*t2 + 1)*prevP.x;		//hermite math for x
+	x1 = (-2*t3+3*t2)*nextP.x;
+	x2 = (t3 -2*t2+t)*curveP[nextPoint-1].tangent.x;
 	x3 = (t3 - t2)*curveP[nextPoint].tangent.x;
 	
 	x = x0 + x1 + x2 + x3;
- 	
-	y0 = ((2*t3)-(3*t2)+1)*prevP.y;		//hermite math for y
-	y1 = ((-2*t3)+(3*t2))*curveP[nextPoint-1].tangent.y;
-	y2 = (t3 - (2*t2)+t)*nextP.y;
+	
+	y0 = (2*t3 - 3*t2 + 1)*prevP.y;		//hermite math for y
+	y1 = (-2*t3+3*t2)*nextP.y;
+	y2 = (t3 -2*t2+t)*curveP[nextPoint-1].tangent.y;
 	y3 = (t3 - t2)*curveP[nextPoint].tangent.y;
- 	
+	
 	y = y0 + y1 + y2 + y3;
 		
-	z0 = ((2*t3)-(3*t2)+1)*prevP.z;		//hermite math for z
-	z1 = ((-2*t3)+(3*t2))*curveP[nextPoint-1].tangent.z;
-	z2 = (t3 - (2*t2)+t)*nextP.z;
+	z0 = (2*t3 - 3*t2 + 1)*prevP.z;		//hermite math for x
+	z1 = (-2*t3+3*t2)*nextP.z;
+	z2 = (t3 -2*t2+t)*curveP[nextPoint-1].tangent.z;
 	z3 = (t3 - t2)*curveP[nextPoint].tangent.z;
- 	
-
+	
 	z = z0 + z1 + z2 + z3;
  
  	newPosition = Point(x,y,z);
- 	
- 	// Calculate time interval, and normal time required for later curve calculations
- 
- 	// Calculate position at t = time on Hermite curve
- 
- 	// Return result
- 	return newPosition;
+	
+	// Calculate time interval, and normal time required for later curve calculations
+
+	// Calculate position at t = time on Hermite curve
+
+	// Return result
+	return newPosition;
+
  }
  
  // Implement Catmull-Rom curve

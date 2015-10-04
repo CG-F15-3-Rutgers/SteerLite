@@ -77,12 +77,14 @@
  
  
  	}*/
+	
 	Point startPoint = controlPoints[0].position;
  	Point endPoint;
 	
 	float time = 0;
  	float endTime = controlPoints[controlPoints.size() - 1].time;
  	float startTime = controlPoints[0].time;
+	
 	
 	float timeWin = 0.5;
  	while (time <= endTime) {			//while time is less than or equal to the endtime
@@ -101,6 +103,7 @@
  	
  	return;
  #endif
+
  }
  
  // Sort controlPoints vector in ascending order: min-first
@@ -172,7 +175,7 @@
  		return false;
 	}
  	// Calculate position at t = time on curve
- 	/*if (type == hermiteCurve)
+ 	if (type == hermiteCurve)
  	{
  		outputPoint = useHermiteCurve(nextPoint, time);
  	}
@@ -180,9 +183,9 @@
  	{
  		outputPoint = useCatmullCurve(nextPoint, time);
  	}
-	*/
+	
  	// Return
-	outputPoint = useHermiteCurve(nextPoint, time);
+	//outputPoint = useHermiteCurve(nextPoint, time);
 	//outputPoint = useCatmullCurve(nextPoint, time);
  
  	return true;
@@ -205,7 +208,7 @@
  // Find the current time interval (i.e. index of the next control point to follow according to current time)
  bool Curve::findTimeInterval(unsigned int& nextPoint, float time)
  {
- 
+	
 	std::vector<CurvePoint> cPoints = getControPoints();	//vector
  	std::vector<CurvePoint>::iterator iter;					//vector iterator
  	iter = cPoints.begin();
@@ -220,14 +223,16 @@
 	//std::cout<<"error in findTimeInterval"<<"\n"<<"\n";
  	return false;		//if the time is outside of the time interval we return false
 	
+	
  }
  
  // Implement Hermite curve
  Point Curve::useHermiteCurve(const unsigned int nextPoint, const float time)
  {
- 	
+	
 	Point newPosition;
 	float normalTime, intervalTime;
+	
 
 	std::vector<CurvePoint> curveP = getControPoints();		//vector of controlPoints
 	Point nextP = curveP[nextPoint].position;
@@ -238,6 +243,7 @@
 	
 	intervalTime = nextTime-prevTime;						//interval time is just the later time - earlier time
 	normalTime = ((time-prevTime)/intervalTime);			//normal time is interval time normalized
+	
 	
 	float t = normalTime;
 	float t2 = normalTime*normalTime;
@@ -277,7 +283,7 @@
 
 	// Return result
 	return newPosition;
-
+	
  }
  
  // Implement Catmull-Rom curve

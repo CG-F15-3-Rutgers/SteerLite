@@ -1,23 +1,23 @@
-﻿Build started 10/21/2015 10:40:40 PM.
-     1>Project "G:\Git_clone_steerlite\SteerLite\steersim\build\win32\steersim.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/7/2015 1:29:43 AM.
+     1>Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\steersim\build\win32\steersim.vcxproj" on node 3 (Build target(s)).
      1>Link:
-         steersim.vcxproj -> G:\Git_clone_steerlite\SteerLite\build\win32\Release\steersim.exe
+         steersim.vcxproj -> C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\steersim.exe
        PostBuildEvent:
          IF "" == "ENABLE_QT" (
          IF "Release" == "Release" (
-         copy \QtCore4.dll G:\Git_clone_steerlite\SteerLite\build\win32\Release\QtCore4.dll
-         copy \QtGui4.dll G:\Git_clone_steerlite\SteerLite\build\win32\Release\QtGui4.dll
-         copy \QtOpenGL4.dll G:\Git_clone_steerlite\SteerLite\build\win32\Release\QtOpenGL4.dll
+         copy \QtCore4.dll C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\QtCore4.dll
+         copy \QtGui4.dll C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\QtGui4.dll
+         copy \QtOpenGL4.dll C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\QtOpenGL4.dll
          ) ELSE (
-         copy \QtCored4.dll G:\Git_clone_steerlite\SteerLite\build\win32\Release\QtCored4.dll
-         copy \QtGuid4.dll G:\Git_clone_steerlite\SteerLite\build\win32\Release\QtGuid4.dll
-         copy \QtOpenGLd4.dll G:\Git_clone_steerlite\SteerLite\build\win32\Release\QtOpenGLd4.dll
+         copy \QtCored4.dll C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\QtCored4.dll
+         copy \QtGuid4.dll C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\QtGuid4.dll
+         copy \QtOpenGLd4.dll C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\QtOpenGLd4.dll
          )
          )
          
          :VCEnd
-     1>Done Building Project "G:\Git_clone_steerlite\SteerLite\steersim\build\win32\steersim.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\steersim\build\win32\steersim.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.39
+Time Elapsed 00:00:00.34

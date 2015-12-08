@@ -162,6 +162,4 @@ license, and those sources are only included for convenience.
 
 Refer to the SteerSuite web page for credits and acknowledgements.
 
-Word.
-
 

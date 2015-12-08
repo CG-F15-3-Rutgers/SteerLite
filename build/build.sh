@@ -190,8 +190,12 @@ if [ "$BUILD_PLATFORM" == "osx" ]; then
     STEERTOOL_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     SIMPLEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
-    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     COLLISIONAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+    SEARCHAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+	
+    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+    
+	SOCIAL_FORCES_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     
     UTIL_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
 
@@ -201,12 +205,15 @@ if [ "$BUILD_PLATFORM" == "osx" ]; then
     STEERSIM_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OPENGL_LINK $QT_LINK $UTIL_LINK $STEERLIB_LINK $GLFW_LINK $PPR_LINK $ORCA_LINK $FOOTSTEP_LINK $CC_LINK "
     STEERTOOL_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $STEERLIB_LINK $UTIL_LINK"
     SIMPLEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $UTIL_LINK"
-    CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $OPENGL_LINK $UTIL_LINK"
+    COLLISIONAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $UTIL_LINK"
+    SEARCHAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $UTIL_LINK"
+    CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $UTIL_LINK"
+	
     PPRAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $OPENGL_LINK $UTIL_LINK"
-    COLLISIONAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $OPENGL_LINK $UTIL_LINK"
     
     UTIL_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS"
-
+    SOCIAL_FORCES_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $OSX_DYLIB_LFLAGS $STEERLIB_LINK $OPENGL_LINK $UTIL_LINK"
+    
 
 elif [ "$BUILD_PLATFORM" == "linux" ]; then
 
@@ -236,9 +243,12 @@ elif [ "$BUILD_PLATFORM" == "linux" ]; then
     STEERSIM_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $QT_INCLUDES $UTIL_INCLUDE $PPR_INCLUDE $ORCA_INCLUDE $CC_INCLUDE"
     STEERTOOL_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     SIMPLEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
-	CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
-    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     COLLISIONAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+    SEARCHAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+    CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+	
+    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
+    SOCIAL_FORCES_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $UTIL_INCLUDE"
     
     UTIL_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     
@@ -249,9 +259,12 @@ elif [ "$BUILD_PLATFORM" == "linux" ]; then
     STEERSIM_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK $GLFW_LINK $OPENGL_LINK $QT_LINK $STEERLIB_LINK $PPR_LINK $ORCA_LINK $CC_LINK "
     STEERTOOL_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $STEERLIB_LINK $UTIL_LINK"
     SIMPLEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
-	CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
-    PPRAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
     COLLISIONAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
+    SEARCHAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
+    CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
+	
+    PPRAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
+    SOCIAL_FORCES_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $UTIL_LINK"
     
     UTIL_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
         
@@ -277,9 +290,11 @@ elif [ "$BUILD_PLATFORM" == "solaris" ]; then
     STEERSIM_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE $QT_INCLUDES"
     STEERTOOL_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     SIMPLEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
-	CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
-    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     COLLISIONAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
+    SEARCHAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
+    CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
+	
+    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     
     SCENARIO_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
 
@@ -289,9 +304,11 @@ elif [ "$BUILD_PLATFORM" == "solaris" ]; then
     STEERSIM_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $GLFW_LINK $OPENGL_LINK $QT_LINK $STEERLIB_LINK -lrt"
     STEERTOOL_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $STEERLIB_LINK -lrt"
     SIMPLEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
-	CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
-    PPRAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
     COLLISIONAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
+    SEARCHAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
+    CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
+	
+    PPRAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
 
 elif [ "$BUILD_PLATFORM" == "simics" ]; then
     echo "Building SteerSuite for Simics simulation environment"
@@ -315,9 +332,11 @@ elif [ "$BUILD_PLATFORM" == "simics" ]; then
     STEERSIM_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     STEERTOOL_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     SIMPLEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
-	CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
-    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     COLLISIONAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
+    SEARCHAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
+    CURVEAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
+	
+    PPRAI_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
     
     SCENARIO_INCLUDES="$BASIC_INCLUDES $STEERLIB_INCLUDE"
 
@@ -327,9 +346,10 @@ elif [ "$BUILD_PLATFORM" == "simics" ]; then
     STEERSIM_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $STEERLIB_LINK -lrt"
     STEERTOOL_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS $STEERLIB_LINK -lrt"
     SIMPLEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
+    COLLISIONAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
+    SEARCHAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
     CURVEAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
     PPRAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
-    COLLISIONAI_LFLAGS="$BASIC_LFLAGS $RPATH_LFLAGS"
 
 else
     EXECUTABLE=`basename $0`
@@ -360,9 +380,11 @@ export STEERBENCH_INCLUDES
 export STEERSIM_INCLUDES
 export STEERTOOL_INCLUDES
 export SIMPLEAI_INCLUDES
+export COLLISIONAI_INCLUDES
+export SEARCHAI_INCLUDES
 export CURVEAI_INCLUDES
 export PPRAI_INCLUDES
-export COLLISIONAI_INCLUDES
+export SOCIAL_FORCES_INCLUDES
 export UTIL_INCLUDES
 
 export BUILD_SCRIPT_DEFINES
@@ -371,9 +393,11 @@ export STEERBENCH_LFLAGS
 export STEERSIM_LFLAGS
 export STEERTOOL_LFLAGS
 export SIMPLEAI_LFLAGS
+export COLLISIONAI_LFLAGS
+export SEARCHAI_LFLAGS
 export CURVEAI_LFLAGS
 export PPRAI_LFLAGS
-export COLLISIONAI_LFLAGS
+export SOCIAL_FORCES_LFLAGS
 export UTIL_LFLAGS
 
 
@@ -475,23 +499,33 @@ if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "simpleAI" ]]; then
 fi
 
 if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "collisionAI" ]]; then
-        echo "==================================="
-        echo "Building Collision AI module"
-        echo "==================================="
-        pushd ../collisionAI/build > /dev/null
-        $MAKE $MAKE_ARGS
-        COLLISIONAI_BUILD_RETURN_CODE=$?
-        popd > /dev/null
+	echo "==================================="
+	echo "Building Collision AI module"
+	echo "==================================="
+	pushd ../collisionAI/build > /dev/null
+	$MAKE $MAKE_ARGS
+	COLLISIONAI_BUILD_RETURN_CODE=$?
+	popd > /dev/null
+fi
+
+if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "searchAI" ]]; then
+    echo "==================================="
+    echo "Building Search AI module"
+    echo "==================================="
+    pushd ../searchAI/build > /dev/null
+    $MAKE $MAKE_ARGS
+    SEARCHAI_BUILD_RETURN_CODE=$?
+    popd > /dev/null
 fi
 
 if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "curveAI" ]]; then
-    echo "==================================="
-    echo "Building Simple Curve AI module"
-    echo "==================================="
-    pushd ../curveAI/build > /dev/null
-    $MAKE $MAKE_ARGS
-    CURVEAI_BUILD_RETURN_CODE=$?
-    popd > /dev/null
+	echo "==================================="
+	echo "Building Curve AI module"
+	echo "==================================="
+	pushd ../curveAI/build > /dev/null
+	$MAKE $MAKE_ARGS
+	CURVEAI_BUILD_RETURN_CODE=$?
+	popd > /dev/null
 fi
 
 if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "pprAI" ]]; then
@@ -501,6 +535,26 @@ if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "pprAI" ]]; then
 	pushd ../pprAI/build > /dev/null
 	$MAKE $MAKE_ARGS
 	PPRAI_BUILD_RETURN_CODE=$?
+	popd > /dev/null
+fi
+
+if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "sfAI" ]]; then
+	echo "==================================="
+	echo "Building SOCIAL FORCES module"
+	echo "==================================="
+	pushd ../socialForcesAI/build > /dev/null
+	$MAKE $MAKE_ARGS
+	SOCIAL_FORCES_BUILD_RETURN_CODE=$?
+	popd > /dev/null
+fi
+
+if [[ $BUILD_MODULE == "all" || $BUILD_MODULE == "curveAI" ]]; then
+	echo "==================================="
+	echo "Building Curve module"
+	echo "==================================="
+	pushd ../curveAI/build > /dev/null
+	$MAKE $MAKE_ARGS
+	CURVEAI_BUILD_RETURN_CODE=$?
 	popd > /dev/null
 fi
 
@@ -564,9 +618,15 @@ if [ $SIMPLEAI_BUILD_RETURN_CODE == 0 ]; then
 fi
 
 if [ $COLLISIONAI_BUILD_RETURN_CODE == 0 ]; then
-    echo "copying collisionAI.o to $MODULES_DIR"
+    echo "copying collisonAI.o to $MODULES_DIR"
     cp ../collisionAI/build/collisionAI.o $MODULES_DIR
     COLLISIONAI_INSTALL_RETURN_CODE=$?
+fi
+
+if [ $SEARCHAI_BUILD_RETURN_CODE == 0 ]; then
+    echo "copying searchAI.o to $MODULES_DIR"
+    cp ../searchAI/build/searchAI.o $MODULES_DIR
+    SEARCHAI_INSTALL_RETURN_CODE=$?
 fi
 
 if [ $CURVEAI_BUILD_RETURN_CODE == 0 ]; then
@@ -579,6 +639,12 @@ if [ $PPRAI_BUILD_RETURN_CODE == 0 ]; then
     echo "copying pprAI.o to $MODULES_DIR"
     cp ../pprAI/build/pprAI.o $MODULES_DIR
     PPRAI_INSTALL_RETURN_CODE=$?
+fi
+
+if [ $SOCIAL_FORCES_BUILD_RETURN_CODE == 0 ]; then
+    echo "copying sfAI.o to $MODULES_DIR"
+    cp ../socialForcesAI/build/sfAI.o $MODULES_DIR
+    SOCIAL_FORCES_INSTALL_RETURN_CODE=$?
 fi
 
 echo ""
@@ -657,13 +723,33 @@ else
     fi
 fi
 
+if [ $COLLISIONAI_BUILD_RETURN_CODE != 0 ]; then
+    echo "* CollisionAI did not build properly."
+else
+    if [ $COLLISIONAI_INSTALL_RETURN_CODE != 0 ]; then
+	echo "* CollisionAI built successfully, but could not be installed to $MODULES_DIR."
+    else
+	echo "  CollisionAI built and installed successfully."
+    fi
+fi
+
+if [ $SEARCHAI_BUILD_RETURN_CODE != 0 ]; then
+    echo "* SearchAI did not build properly."
+else
+    if [ $SEARCHAI_INSTALL_RETURN_CODE != 0 ]; then
+    echo "* SearchAI built successfully, but could not be installed to $MODULES_DIR."
+    else
+    echo "  SearchAI built and installed successfully."
+    fi
+fi
+
 if [ $CURVEAI_BUILD_RETURN_CODE != 0 ]; then
     echo "* CurveAI did not build properly."
 else
     if [ $CURVEAI_INSTALL_RETURN_CODE != 0 ]; then
-    echo "* CurveAI built successfully, but could not be installed to $MODULES_DIR."
+	echo "* CurveAI built successfully, but could not be installed to $MODULES_DIR."
     else
-    echo "  CurveAI built and installed successfully."
+	echo "  CurveAI built and installed successfully."
     fi
 fi
 
@@ -677,13 +763,13 @@ else
     fi
 fi
 
-if [ $COLLISIONAI_BUILD_RETURN_CODE != 0 ]; then
-    echo "* COLLISIONAI did not build properly."
+if [ $SOCIAL_FORCES_BUILD_RETURN_CODE != 0 ]; then
+    echo "* SOCIAL_FORCES did not build properly."
 else
-    if [ $COLLISIONAI_INSTALL_RETURN_CODE != 0 ]; then
-        echo "* COLLISIONAI built successfully, but could not be installed to $MODULES_DIR."
+    if [ $SOCIAL_FORCES_INSTALL_RETURN_CODE != 0 ]; then
+	echo "* SOCIAL_FORCES built successfully, but could not be installed to $MODULES_DIR."
     else
-        echo "  COLLISIONAI built and installed successfully."
+	echo "  SOCIAL_FORCES built and installed successfully."
     fi
 fi
 

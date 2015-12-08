@@ -1,9 +1,9 @@
-﻿Build started 10/21/2015 10:40:41 PM.
-     1>Project "G:\Git_clone_steerlite\SteerLite\pprAI\build\win32\pprAI.vcxproj" on node 7 (Build target(s)).
+﻿Build started 12/7/2015 1:29:43 AM.
+     1>Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\pprAI\build\win32\pprAI.vcxproj" on node 6 (Build target(s)).
      1>Link:
-         pprAI.vcxproj -> G:\Git_clone_steerlite\SteerLite\build\win32\Release\pprAI.dll
-     1>Done Building Project "G:\Git_clone_steerlite\SteerLite\pprAI\build\win32\pprAI.vcxproj" (Build target(s)).
+         pprAI.vcxproj -> C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\pprAI.dll
+     1>Done Building Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\pprAI\build\win32\pprAI.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.26
+Time Elapsed 00:00:00.14

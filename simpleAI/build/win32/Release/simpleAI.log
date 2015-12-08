@@ -1,9 +1,9 @@
-﻿Build started 10/21/2015 10:40:41 PM.
-     1>Project "G:\Git_clone_steerlite\SteerLite\simpleAI\build\win32\simpleAI.vcxproj" on node 4 (Build target(s)).
+﻿Build started 12/7/2015 1:29:43 AM.
+     1>Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\simpleAI\build\win32\simpleAI.vcxproj" on node 4 (Build target(s)).
      1>Link:
-         simpleAI.vcxproj -> G:\Git_clone_steerlite\SteerLite\build\win32\Release\simpleAI.dll
-     1>Done Building Project "G:\Git_clone_steerlite\SteerLite\simpleAI\build\win32\simpleAI.vcxproj" (Build target(s)).
+         simpleAI.vcxproj -> C:\Users\benb0_000\Documents\GitHub\SteerLite\build\win32\Release\simpleAI.dll
+     1>Done Building Project "C:\Users\benb0_000\Documents\GitHub\SteerLite\simpleAI\build\win32\simpleAI.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.41
+Time Elapsed 00:00:00.16

@@ -368,25 +368,25 @@ namespace SteerLib {
 	template < class PlanningDomain, class PlanningState, class PlanningAction >
 	bool BestFirstSearchPlanner< PlanningDomain, PlanningState, PlanningAction >::_computePlan( const PlanningState & startState, const PlanningState & idealGoalState, std::map<PlanningState, BestFirstSearchNode<PlanningState, PlanningAction> > & stateMap, PlanningState & actualStateReached )
 	{
-		std::set<BestFirstSearchNode<PlanningState, PlanningAction>, CompareCosts<PlanningState, PlanningAction> > openSet;
+		std::set<BestFirstSearchNode<PlanningState, PlanningAction>, CompareCosts<PlanningState, PlanningAction> > open;
 
 		stateMap.clear();
-		openSet.clear();
+		open.clear();
 
 		float newf = _planningDomain->estimateTotalCost(startState, idealGoalState, 0.0f);
 		BestFirstSearchNode<PlanningState, PlanningAction> nextNode(0.0f, newf, startState, startState);
 
 		stateMap[nextNode.action.state] = nextNode;
-		openSet.insert( nextNode );
+		open.insert( nextNode );
 
 		unsigned int numNodesExpanded = 0;
 
-		while ((numNodesExpanded < _maxNumNodesToExpand) && (!openSet.empty())) {
+		while ((numNodesExpanded < _maxNumNodesToExpand) && (!open.empty())) {
 
 			numNodesExpanded++;
 
 			// get a copy of the first element of the open set (i.e. about to pop it, but only if we get past the next if-statement).
-			BestFirstSearchNode<PlanningState, PlanningAction> x = *(openSet.begin());
+			BestFirstSearchNode<PlanningState, PlanningAction> x = *(open.begin());
 
 			// ask the user if this node is a goal state.  If so, then finish up.
 			if ( _planningDomain->isAGoalState( x.action.state, idealGoalState ) ) {
@@ -397,7 +397,7 @@ namespace SteerLib {
 			// move x from open set to closed set.
 			// NOTE CAREFULLY that nodeInMap is an alias, so that means we are also 
 			// modifying the boolean alreadyExpanded in the stateMap as well.
-			openSet.erase( openSet.begin() );
+			open.erase( open.begin() );
 			BestFirstSearchNode<PlanningState, PlanningAction> & nodeInMap = (*stateMap.find(x.action.state)).second;
 			nodeInMap.alreadyExpanded = true;
 
@@ -419,7 +419,7 @@ namespace SteerLib {
 					if (newg < (*existingNode).second.g) {
 						// then, this means we need to update the node.
 						if ((*existingNode).second.alreadyExpanded == false) {
-							openSet.erase((*existingNode).second);
+							open.erase((*existingNode).second);
 						}
 						stateMap.erase(existingNode);
 					}
@@ -434,13 +434,13 @@ namespace SteerLib {
 				nextNode = BestFirstSearchNode<PlanningState, PlanningAction>(newg, newf, x.action.state, (*action));
 
 				stateMap[nextNode.action.state] = nextNode;
-				openSet.insert( nextNode );
+				open.insert( nextNode );
 			}
 		}
 
 
 
-		if (openSet.empty()) {
+		if (open.empty()) {
 			// if we get here, there was no solution.
 			actualStateReached = startState;
 		}
@@ -451,7 +451,7 @@ namespace SteerLib {
 			// state space, and transitions, then the next node that
 			// would be expanded will be the most promising path anyway.
 			//
-			actualStateReached = (*(openSet.begin())).action.state;
+			actualStateReached = (*(open.begin())).action.state;
 		}
 
 		return false;  // returns false because plan is incomplete.
